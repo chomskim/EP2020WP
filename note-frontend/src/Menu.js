@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 function Menu() {
+  const history = useHistory();
   function handleSignout() {
     console.log('Click Signout');
+    history.push("/Signin");
   }
   return (
     <Navbar fluid collapseOnSelect>
