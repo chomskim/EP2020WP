@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import './Signin.css';
+import { useAppContext } from "../libs/contextLib";
 
 export default function Signin() {
+  const { userHasAuthenticated } = useAppContext();
   const history = useHistory();
   const [values, setValues] = useState({
     email: '',
@@ -17,6 +19,7 @@ export default function Signin() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log('email, password=', values.email, values.password);
+    userHasAuthenticated(true);
     history.push("/");
   }
   const handleChange = (name) => (event) => {
