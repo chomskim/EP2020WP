@@ -35,7 +35,7 @@ function mainReducer(state, action) {
       return { ...state, notes: addedOrojects };
     case 'delNote':
       const filteredNotes = state.notes.filter(
-        (proj) => proj.noteId !== action.payload.noteId
+        (note) => note.noteId !== action.payload.noteId
       );
       return { ...state, notes: filteredNotes };
     case 'updNote':

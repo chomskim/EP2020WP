@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { v4 } from 'uuid';
-
 import './NewNote.css';
 import { useMainContext } from '../libs/contextLib';
+import { delay } from '../libs/utilsLib';
 
 export default function NewNote() {
   const { state, reducer } = useMainContext();
@@ -22,17 +22,26 @@ export default function NewNote() {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    console.log('values=', values);
-    const note = {
+  function insertNote() {
+    const newNote = {
       noteId: v4(),
       title: values.title,
       content: values.content,
       created: new Date(),
       updated: new Date(),
     };
-    reducer({ type: 'addNote', payload: note });
+    return delay(500).then(() => {
+      console.log('newNote=', newNote);
+      // insert note
+      reducer({ type: 'addNote', payload: newNote });
+      return newNote;
+    });
+  }
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log('values=', values);
+    const newNote = await insertNote();
+    console.log('handleSubmit newNote=', newNote);
     history.push('/');
   }
 

@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { useMainContext } from '../libs/contextLib';
 import { onError } from '../libs/errorLib';
+import { delay } from '../libs/utilsLib';
 
 export default function Notes() {
   const { state, reducer } = useMainContext();
@@ -17,10 +18,12 @@ export default function Notes() {
     console.log('useEffect id=', id);
     async function onLoad() {
       try {
-        const note = await loadNote();
-        const { content } = note;
-
-        setNote(note);
+        const curNote = await loadNote();
+        setNote(curNote);
+        setValues({
+          title: curNote.title,
+          content: curNote.content,
+        })
       } catch (e) {
         onError(e);
       }
@@ -31,9 +34,6 @@ export default function Notes() {
 
   function loadNote() {
     console.log('loadNote id=', id);
-    function delay(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
-    }
     return delay(500).then(() => state.notes.filter((note) => note.noteId === id)[0]);
   }
 
@@ -44,28 +44,42 @@ export default function Notes() {
     setValues({ ...values, [name]: event.target.value });
   };
 
-  function saveNote(note) {
+  function updateNote() {
     console.log('note=', note);
-    return true;
+    const updNote = {
+      noteId: note.noteId,
+      title: values.title || note.title,
+      content: values.content || note.content,
+      created: note.created,
+      updated: new Date(),
+    };
+    return delay(500).then(() => {
+      console.log('updNote=', updNote);
+      // update note
+      setNote(updNote);
+      reducer({ type: 'updNote', payload: updNote });
+      return updNote;
+    });
   }
   async function handleSubmit(event) {
     event.preventDefault();
-
-    try {
-      await saveNote({
-        title: values.title,
-        content: values.content,
-      });
-      history.push('/');
-    } catch (e) {
-      onError(e);
-    }
+    console.log('values=', values);
+    const updNote = await updateNote();
+    console.log('handleSubmit updNote=', updNote);
+    history.push('/');
   }
 
+  function deleteNote() {
+    console.log('deleteNote note=', note);
+    return delay(500).then(() => {
+       // delete note
+      reducer({ type: 'delNote', payload: note });
+      return true;
+    });
+  }
   async function handleDelete(event) {
     event.preventDefault();
-
-    console.log('Clicked Delete Button');
+    await deleteNote()
     history.push('/');
   }
 
