@@ -1,3 +1,5 @@
+
+let i = 0;
 const promiseA = new Promise((resolve, reject) => {
   setTimeout(() => {
     i++;

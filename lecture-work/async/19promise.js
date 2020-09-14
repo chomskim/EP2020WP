@@ -18,10 +18,12 @@ a()
   .then((result) => {
     console.log("a() success:", result);
 
-    b().then((result) => {
+    b()
+    .then((result) => {
       console.log("b() success:", result);
 
-      c().then((result) => {
+      c()
+      .then((result) => {
         console.log("c() success:", result);
       });
     });
