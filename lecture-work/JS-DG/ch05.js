@@ -33,3 +33,19 @@ for (let p in o) {
   // Assign property names of o to variable p
   console.log(o[p]); // Print the value of each property
 }
+const prompt = require("prompt");
+
+prompt.start();
+
+try {
+  // Ask the user to enter a number
+  prompt.get(["Please enter a positive integer"], (err, res) => {
+    // Compute the factorial of the number, assuming the input is valid
+    let f = factorial(parseInt(res));
+    // Display the result
+    console.log(n + "! = " + f);
+  });
+} catch (ex) {
+  // If the user's input was not valid, we end up here
+  console.log(ex); // Tell the user what the error is
+}
