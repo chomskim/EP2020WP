@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>House Draw</title>
+    <script src="./house.js"></script>
+  </head>
+  <body>
+    <div style="position: absolute; top: 50px; left: 50px">
+      <canvas id="houseCanvas" width="800" height="450"> Your browser does not support HTML5 Canvas. </canvas>
+    </div>
+    <script type="text/javascript">
+      function main() {
+        const canvas = document.getElementById("houseCanvas");
+        const context = canvas.getContext("2d");
+
+        const houseList = [];
+        let house1 = new House(null, 50, 50, 200, 350);
+        let roof1 = new DomeRoof(house1, 0, 0, 200, 100);
+        house1.roof = roof1;
+        let wall1 = new Wall(house1, 0, 100, 200, 250);
+        let win1 = new DoubleWindow(wall1, 40, 40, 40, 80);
+        wall1.windows.push(win1);
+        let win2 = new DoubleWindow(wall1, 120, 40, 40, 80);
+        wall1.windows.push(win2);
+        let door1 = new Door(wall1, 86, 180, 35, 70);
+        wall1.door = door1;
+        house1.wall = wall1;
+
+        houseList.push(house1);
+
+        house1 = new House(null, 250, 100, 300, 300);
+        roof1 = new GambrelRoof(house1, 0, 0, 300, 100);
+        house1.roof = roof1;
+        wall1 = new Wall(house1, 0, 100, 300, 200);
+        win1 = new QuadWindow(wall1, 80, 20, 36, 70);
+        win1.sash = true;
+        wall1.windows.push(win1);
+        win2 = new QuadWindow(wall1, 200, 20, 36, 70);
+        win2.sash = true;
+        wall1.windows.push(win2);
+        door1 = new Door(wall1, 50, 140, 33, 60);
+        wall1.door = door1;
+        house1.wall = wall1;
+
+        houseList.push(house1);
+
+        house1 = new House(null, 550, 20, 200, 380);
+        roof1 = new CathedralRoof(house1, 0, 0, 200, 100);
+        house1.roof = roof1;
+        wall1 = new Wall(house1, 0, 100, 200, 280);
+        win1 = new Window(wall1, 30, 40, 40, 80);
+        win1.sash = true;
+        wall1.windows.push(win1);
+        win2 = new Window(wall1, 130, 40, 40, 80);
+        win2.sash = true;
+        wall1.windows.push(win2);
+        door1 = new Door(wall1, 150, 200, 40, 80);
+        door1.leftKnob = true;
+        wall1.door = door1;
+        house1.wall = wall1;
+
+        houseList.push(house1);
+
+        for (let i = 0; i < houseList.length; ++i) {
+          houseList[i].draw(context);
+        }
+      }
+      main();
+    </script>
+  </body>
+</html>
