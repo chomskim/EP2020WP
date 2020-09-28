@@ -44,5 +44,6 @@ allShapes.push(new Rectangle(9, 9));
 allShapes.push(new Circle(0));
 allShapes.push(new Rectangle(0, 0));
 
+console.log(`allShapes = ${JSON.stringify(allShapes)}`);
 const tot = totalAreas(allShapes);
 console.log(`Total Area = ${tot}`);

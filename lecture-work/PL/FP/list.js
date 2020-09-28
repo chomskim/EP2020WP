@@ -9,9 +9,9 @@ console.log(`a.map(x=>x*x)=[${a.map((x) => x * x)}]`);
 function gt3(x) {
   return x > 3;
 }
+const le4 = (x) => x <= 4;
 a = [1, 2, 3, 4, 5];
 console.log(`a=[${a}]`);
-const le4 = (x) => x <= 4;
 console.log(`a.filter(x=>x%2===0)=[${a.filter((x) => x % 2 === 0)}]`);
 console.log(`a.filter(gt3)=[${a.filter(gt3)}]`);
 console.log(`a.filter(le4)=[${a.filter(le4)}]`);
@@ -25,7 +25,7 @@ function zip(L1, L2, f) {
 }
 console.log(`zip([1,3,5],[6,4,2],(x,y)=>x+y)=[${zip([1, 3, 5], [6, 4, 2], (x, y) => x + y)}]`);
 console.log(`zip([1,3,5],[6,4,2],(x,y)=>x>y)=[${zip([1, 3, 5], [6, 4, 2], (x, y) => x > y)}]`);
-
+///*
 function quickSort(list, comp) {
   if (list.length <= 1) return list;
   else {
@@ -98,3 +98,4 @@ cardList = [
   [A, K, K, K, K],
 ];
 console.log(`quickSort(cardList, listComp)=${JSON.stringify(quickSort(cardList, listComp))}`);
+//*/

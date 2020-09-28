@@ -1,15 +1,10 @@
-/*
-const color = require('./color');
-const COLOR_BLACK = color(0,0,0);
-const COLOR_WHITE = color(255, 255, 255);
-const COLOR_RED = color(255, 0, 0);
-*/
 function colorString(r, g, b) {
 	return "rgb(" + r + "," + g + "," + b + ")";
 }
 const COLOR_BLACK = colorString(0,0,0);
 const COLOR_WHITE = colorString(255, 255, 255);
 const COLOR_RED = colorString(255, 0, 0);
+
 class Shape {
   constructor(parent, x, y, w, h) {
     this.name = "Shape";
