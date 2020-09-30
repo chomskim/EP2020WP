@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { Button, FormGroup, FormControl } from 'react-bootstrap';
-import { onError } from '../libs/errorLib';
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { Button, Form, FormGroup, FormControl } from "react-bootstrap";
+import { onError } from "../libs/errorLib";
 
 const INIT_NOTES_DB = [
   {
-    title: 't1',
-    content: 'sample note',
+    title: "t1",
+    content: "sample note",
     created: 1487800950620,
-    noteId: '1234',
+    noteId: "1234",
   },
   {
-    title: 'hello',
-    content: 'second note',
+    title: "hello",
+    content: "second note",
     created: new Date(),
-    noteId: '12345',
+    noteId: "12345",
   },
 ];
 
@@ -22,49 +22,53 @@ export default function Notes() {
   const { id } = useParams();
   const history = useHistory();
   const [note, setNote] = useState(null);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    console.log('useEffect id=',id);
-    async function onLoad() {
-      try {
-        const note = await loadNote();
-        const { content } = note;
-
-        setContent(content);
-        setNote(note);
-      } catch (e) {
-        onError(e);
-      }
-    }
-
+    console.log("useEffect id=", id);
     onLoad();
   }, []);
 
-  function loadNote() {
-    console.log('loadNote id=',id);
-    function delay(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  async function onLoad() {
+    try {
+      const curNote = await loadNote();
+      const { content } = curNote;
+
+      setContent(content);
+      setNote(curNote);
+    } catch (e) {
+      onError(e);
     }
-    return delay(500).then(() => INIT_NOTES_DB.filter(note=>note.noteId===id)[0]);
+  }
+
+  function loadNote() {
+    console.log("loadNote id=", id);
+    return delay(500).then(() => INIT_NOTES_DB.filter((note) => note.noteId === id)[0]);
   }
 
   function validateForm() {
     return content && content.length > 0;
   }
 
-  function saveNote(note) {
-    console.log('note=', note);
-    return true;
+  function saveNote(curNote) {
+    console.log("saveNote curNote=", curNote);
+    return delay(500).then(() => {
+      console.log("change note to =", { ...note, ...curNote });
+      if (curNote) setNote({ ...note, ...curNote });
+      else setNote(curNote);
+    });
   }
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
-      await saveNote({
-        content,
-      });
-      history.push('/');
+      await saveNote({ content });
+      console.log("After saveNote note=", note);
+      history.push("/");
     } catch (e) {
       onError(e);
     }
@@ -73,20 +77,16 @@ export default function Notes() {
   async function handleDelete(event) {
     event.preventDefault();
 
-    console.log('Clicked Delete Button');
-    history.push('/');
+    console.log("Clicked Delete Button");
+    history.push("/");
   }
 
   return (
     <div className="Notes">
       {note && (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <FormGroup controlId="content">
-            <FormControl
-              value={content}
-              componentClass="textarea"
-              onChange={(e) => setContent(e.target.value)}
-            />
+            <FormControl value={content} componentClass="textarea" onChange={(e) => setContent(e.target.value)} />
           </FormGroup>
           <Button block type="submit" bsSize="large" bsStyle="primary" disabled={!validateForm()}>
             Save
@@ -94,7 +94,7 @@ export default function Notes() {
           <Button block bsSize="large" bsStyle="danger" onClick={handleDelete}>
             Delete
           </Button>
-        </form>
+        </Form>
       )}
     </div>
   );

@@ -1,61 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useMainContext } from '../libs/contextLib';
-import { onError } from '../libs/errorLib';
-import './Home.css';
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { useMainContext } from "../libs/contextLib";
+import { onError } from "../libs/errorLib";
+import { delay } from "../libs/utilsLib";
+import "./Home.css";
 
 export default function Home() {
   const { state, reducer } = useMainContext();
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    async function onLoad() {
-      if (!state.auth.isAuthenticated) {
-        return;
-      }
-      try {
-        const notes = await loadNotes();
-        console.log('notes=', notes);
-        setNotes(notes);
-      } catch (e) {
-        onError(e);
-      }
-    }
-
     onLoad();
   }, []);
 
-  function loadNotes() {
-    function delay(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
+  async function onLoad() {
+    if (!state.auth.isAuthenticated) {
+      return;
     }
+    try {
+      const notes = await loadNotes();
+      console.log("notes=", notes);
+      setNotes(notes);
+    } catch (e) {
+      onError(e);
+    }
+  }
+
+  function loadNotes() {
     return delay(500).then(() => state.notes);
   }
 
   function renderNotesList(notes) {
     return notes.map((note, i) => (
       <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
-        <ListGroupItem header={note.title} style={{display: 'flex'}}>
-            {note.content.trim().split('\n')[0]}
-            <span style={{position: 'absolute', right: 10}}>
-              {'Created: ' + new Date(note.created).toISOString().substring(0, 10)}
-            </span>
+        <ListGroupItem header={note.title} style={{ display: "flex" }}>
+          {note.content.trim().split("\n")[0]}
+          <span style={{ position: "absolute", right: 10 }}>
+            {"Created: " + new Date(note.created).toISOString().substring(0, 10)}
+          </span>
         </ListGroupItem>
       </LinkContainer>
     ));
   }
 
-  function renderLander() {
+  function renderSignin() {
     return (
-      <div className="lander">
+      <div className="signin">
         <h1>Scratch</h1>
         <p>A simple note taking app</p>
         <div>
           <Link to="/signin" className="btn btn-info btn-lg">
-            Login
+            Signin
           </Link>
           <Link to="/signup" className="btn btn-success btn-lg">
             Signup
@@ -73,7 +70,7 @@ export default function Home() {
           <LinkContainer key="new" to="/notes/new">
             <ListGroupItem>
               <h4>
-                <b>{'\uFF0B'}</b> Create a new note
+                <b>{"\uFF0B"}</b> Create a new note
               </h4>
             </ListGroupItem>
           </LinkContainer>
@@ -83,5 +80,5 @@ export default function Home() {
     );
   }
 
-  return <div className="Home">{state.auth.isAuthenticated ? renderNotes() : renderLander()}</div>;
+  return <div className="Home">{state.auth.isAuthenticated ? renderNotes() : renderSignin()}</div>;
 }
