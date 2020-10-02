@@ -63,7 +63,7 @@ export default function ResetPassword() {
       <Form onSubmit={handleSendCodeClick}>
         <FormGroup bsSize="large" controlId="email">
           <ControlLabel>Email</ControlLabel>
-          <FormControl autoFocus type="email" value={values.email} onChange={handleChange} />
+          <FormControl autoFocus type="email" value={values.email} onChange={handleChange("email")} />
         </FormGroup>
         <LoaderButton block type="submit" bsSize="large" isLoading={isSendingCode} disabled={!validateCodeForm()}>
           Send Confirmation
@@ -77,17 +77,17 @@ export default function ResetPassword() {
       <form onSubmit={handleConfirmClick}>
         <FormGroup bsSize="large" controlId="code">
           <ControlLabel>Confirmation Code</ControlLabel>
-          <FormControl autoFocus type="tel" value={values.code} onChange={handleChange} />
+          <FormControl autoFocus type="tel" value={values.code} onChange={handleChange("code")} />
           <HelpBlock>Please check your email ({values.email}) for the confirmation code.</HelpBlock>
         </FormGroup>
         <hr />
         <FormGroup bsSize="large" controlId="password">
           <ControlLabel>New Password</ControlLabel>
-          <FormControl type="password" value={values.password} onChange={handleChange} />
+          <FormControl type="password" value={values.password} onChange={handleChange("password")} />
         </FormGroup>
         <FormGroup bsSize="large" controlId="confirmPassword">
           <ControlLabel>Confirm Password</ControlLabel>
-          <FormControl type="password" value={values.confirmPassword} onChange={handleChange} />
+          <FormControl type="password" value={values.confirmPassword} onChange={handleChange("confirmPassword")} />
         </FormGroup>
         <LoaderButton block type="submit" bsSize="large" isLoading={isConfirming} disabled={!validateResetForm()}>
           Confirm
@@ -102,7 +102,7 @@ export default function ResetPassword() {
         <Glyphicon glyph="ok" />
         <p>Your password has been reset.</p>
         <p>
-          <Link to="/sign">Click here to login with your new credentials.</Link>
+          <Link to="/signin">Click here to login with your new credentials.</Link>
         </p>
       </div>
     );

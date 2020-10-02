@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { Form, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../containers/LoaderButton";
@@ -27,8 +27,9 @@ export default function Signin() {
     setIsLoading(true);
 
     try {
-      await Auth.signIn(values.email, values.password);
-      console.log("email, password=", values.email, values.password);
+      console.log("handleSubmit values=", values);
+      const res = await Auth.signIn(values.email, values.password);
+      console.log('signIn res =',res);
       const auth = {
         isAuthenticated: true,
         userId: values.email,
@@ -54,8 +55,9 @@ export default function Signin() {
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
-          <FormControl value={values.password} onChange={handleChange("password")} type="password" />
+          <FormControl type="password" value={values.password} onChange={handleChange("password")} />
         </FormGroup>
+        <Link to="/signin/reset">Forgot password?</Link>
         <LoaderButton block bsSize="large" isLoading={isLoading} disabled={!validateForm()} type="submit">
           Signin
         </LoaderButton>
