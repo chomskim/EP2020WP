@@ -16,7 +16,6 @@ export default function Signin() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-
   function validateForm() {
     return values.email.length > 0 && values.password.length > 0;
   }
@@ -29,7 +28,7 @@ export default function Signin() {
     try {
       console.log("handleSubmit values=", values);
       const res = await Auth.signIn(values.email, values.password);
-      console.log('signIn res =',res);
+      console.log("signIn res =", res);
       const auth = {
         isAuthenticated: true,
         userId: values.email,
@@ -58,7 +57,14 @@ export default function Signin() {
           <FormControl type="password" value={values.password} onChange={handleChange("password")} />
         </FormGroup>
         <Link to="/signin/reset">Forgot password?</Link>
-        <LoaderButton block bsSize="large" isLoading={isLoading} disabled={!validateForm()} type="submit">
+        <LoaderButton
+          className="btn btn-info btn-lg"
+          block
+          bsSize="large"
+          isLoading={isLoading}
+          disabled={!validateForm()}
+          type="submit"
+        >
           Signin
         </LoaderButton>
       </Form>

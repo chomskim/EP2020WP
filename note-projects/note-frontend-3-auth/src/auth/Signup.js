@@ -106,7 +106,14 @@ export default function Signup() {
           <ControlLabel>Confirm Password</ControlLabel>
           <FormControl type="password" onChange={handleChange("confirmPassword")} value={values.confirmPassword} />
         </FormGroup>
-        <LoaderButton block bsSize="large" isLoading={isLoading} disabled={!validateForm()} type="submit">
+        <LoaderButton
+          className="btn btn-success btn-lg"
+          block
+          bsSize="large"
+          isLoading={isLoading}
+          disabled={!validateForm()}
+          type="submit"
+        >
           Signup
         </LoaderButton>
       </Form>
