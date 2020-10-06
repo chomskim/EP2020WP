@@ -9,6 +9,7 @@
   "author": "cskim",
   "license": "ISC",
   "dependencies": {
+    "node-fetch": "^2.6.1",
     "prompt": "^1.0.0"
   }
 }

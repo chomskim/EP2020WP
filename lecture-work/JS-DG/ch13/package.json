@@ -1,0 +1,16 @@
+{
+  "name": "ch13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "delay-async1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "node-fetch": "^2.6.1"
+  }
+}
