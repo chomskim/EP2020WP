@@ -5,13 +5,15 @@
     console.log(results);
   };
   getFakePerson();
-})()(() => {
+})();
+(() => {
   fetch("https://api.randomuser.me/?nat=US&results=1")
     .then((res) => res.json())
     .then((json) => json.results)
     .then(console.log)
     .catch(console.error);
-})()(() => {
+})();
+(() => {
   const getPeople = (count) =>
     new Promise((resolves, rejects) => {
       const api = `https://api.randomuser.me/?nat=US&results=${count}`;
@@ -26,7 +28,8 @@
   getPeople(5)
     .then((members) => console.log(members))
     .catch((error) => console.error(`getPeople failed: ${error.message}`));
-})()(() => {
+})();
+(() => {
   import React, { useState, useEffect } from "react";
   export function useFetch(uri) {
     const [data, setData] = useState();
@@ -46,7 +49,8 @@
       error,
     };
   }
-})()(() => {
+})();
+(() => {
   function GitHubUser({ login }) {
     const { loading, data, error } = useFetch(`https://api.github.com/users/${login}`);
     if (loading) return <h1>loading...</h1>;
@@ -62,7 +66,8 @@
       </div>
     );
   }
-})()(() => {
+})();
+(() => {
   function Fetch({
     uri,
     renderSuccess,
