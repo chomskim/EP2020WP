@@ -16,18 +16,21 @@ function delayRunChain() {
     list.push(delta);
     const sum = list.reduce((a, b) => a + b, 0);
     console.log(`after delay ${sum / 1000}sec list=[${list}]`);
+
     delta = 1500;
     console.log(`start delay ${delta / 1000}sec`);
     setTimeout(() => {
       list.push(delta);
       const sum = list.reduce((a, b) => a + b, 0);
       console.log(`after delay ${sum / 1000}sec list=[${list}]`);
+
       delta = 1000;
       console.log(`start delay ${delta / 1000}sec`);
       setTimeout(() => {
         list.push(delta);
         const sum = list.reduce((a, b) => a + b, 0);
         console.log(`after delay ${sum / 1000}sec list=[${list}]`);
+        
         delta = 500;
         console.log(`start delay ${delta / 1000}sec`);
         setTimeout(() => {

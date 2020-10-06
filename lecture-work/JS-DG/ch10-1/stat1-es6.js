@@ -9,4 +9,4 @@ const stddev = function (d) {
   );
 };
 
-module.exports = { mean, stddev }; // default
+export default { mean, stddev };
