@@ -13,7 +13,7 @@ function delayAction(delta) {
     console.log(`after delay ${delta / 1000}sec list=[${list}]`);
     return delta
 }
-const parallelDealy = async () => {
+const parallelDelayRun = async () => {
     await Promise.all([
         delay(2000).then(delayAction),
         delay(1500).then(delayAction),
@@ -22,4 +22,4 @@ const parallelDealy = async () => {
     ]);
     console.log(`After Promose all list=[${list}]`);
 }
-parallelDealy();
+parallelDelayRun();
