@@ -1,7 +1,7 @@
 function delay(delta) {
-    return new Promise((resolve) => {
+    return new Promise((cb) => {
         console.log(`start delay for ${delta / 1000}sec`);
-        setTimeout(resolve, delta, delta);
+        setTimeout(cb, delta, delta);
     });
 }
 

@@ -7,7 +7,7 @@
 // Do somthing -- take 0.5 sec
 // wait done
 function delay(delta) {
-    return new Promise((resolve) => setTimeout(resolve, delta, delta)).then(delta=>delta+1);   
+    return new Promise((cb) => setTimeout(cb, delta, delta)).then(delta=>delta+1);   
 }
 
 const list = [];

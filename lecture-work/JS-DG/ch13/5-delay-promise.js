@@ -7,7 +7,7 @@
 // Do somthing -- take 0.5 sec
 // wait done
 function delay(delta) {
-	return new Promise((resolve) => setTimeout(resolve, delta, delta));
+	return new Promise((cb) => setTimeout(cb, delta, delta));
 }
 
 const list = [];
@@ -40,7 +40,7 @@ function delayRunChain() {
 		})
 		.catch((err) => {
 			console.log(`Error when delta=${delta}, list=[${list}]`);
-		})
+		});
 }
 
 delayRunChain();
