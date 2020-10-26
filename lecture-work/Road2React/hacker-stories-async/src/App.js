@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import "./App.css";
 
 const title = "My Hacker Stories";
@@ -59,9 +60,23 @@ function App() {
         setIsError(true);
         setIsLoading(false);
       });
+
+    /*
     fetch("https://api.randomuser.me/?nat=US&results=3")
       .then((res) => res.json())
       .then((json) => json.results)
+      .then((res) => {
+        // res is Array
+        res.forEach((per) => {
+          console.log(per.email, per.cell, per.name);
+        });
+        setPersons(res);
+      })
+      .catch(console.error);
+    */
+    axios
+      .get("https://api.randomuser.me/?nat=US&results=3")
+      .then((res) => res.data.results)
       .then((res) => {
         // res is Array
         res.forEach((per) => {
@@ -99,7 +114,7 @@ function App() {
       {isError && <p>Something went wrong ...</p>}
       {isLoading ? <p>Loading ...</p> : <List list={stories} onRemoveItem={handleRemoveStory} />}
       <hr />
-      <List1 list={persons}  />
+      <Table list={persons} />
     </>
   );
 }
@@ -143,16 +158,26 @@ const Item = ({ item, onRemoveItem }) => {
 const List = ({ list, onRemoveItem }) =>
   list.map((item) => <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />);
 
-  const Item1 = ({ item }) => {
-    return (
-      <div>
-        <span>{item.email}</span>
-        <span>{item.cell}</span>
-        <span>{item.name.first}</span>
-      </div>
-    );
-  };
-const List1 = ({ list, onRemoveItem }) =>
-  list.map((item) => <Item1 key={item.objectID} item={item} />);
+const TableRow = ({ item }) => {
+  return (
+    <tr>
+      <td>{item.email}</td>
+      <td>{item.cell}</td>
+      <td>{item.name.first}</td>
+    </tr>
+  );
+};
+const Table = ({ list }) => (
+  <table>
+    <thead>
+      <td>email</td>
+      <td>cell phone</td>
+      <td>First name</td>
+    </thead>
+  <tbody>
+    {list.map((item) => <TableRow key={item.objectID} item={item} />)}
+  </tbody>
+  </table>
+);
 
 export default App;
