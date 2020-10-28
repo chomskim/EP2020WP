@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Routes from './Routes';
+import MainRoutes from './MainRoutes';
 
 function App() {
   return (
     <div className="App container">
-      <Routes />
+      <MainRoutes />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Routes from './Routes';
+import MainRoutes from './MainRoutes';
 import { AppContext } from './libs/contextLib';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App container">
       <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-        <Routes />
+        <MainRoutes />
       </AppContext.Provider>
     </div>
   );

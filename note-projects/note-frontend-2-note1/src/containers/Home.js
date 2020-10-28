@@ -33,9 +33,9 @@ export default function Home() {
       return;
     }
     try {
-      const notes = await loadNotes();
-      console.log("notes=", notes);
-      setNotes(notes);
+      const newNotes = await loadNotes();
+      console.log("newNotes=", newNotes);
+      setNotes(newNotes);
     } catch (e) {
       onError(e);
     }

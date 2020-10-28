@@ -7,7 +7,7 @@ function Menu() {
   const history = useHistory();
   function handleSignout() {
     console.log('Click Signout');
-    history.push("/Signin");
+    history.push("/signin");
   }
   return (
     <Navbar fluid collapseOnSelect>
