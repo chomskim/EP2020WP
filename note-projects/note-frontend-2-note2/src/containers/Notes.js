@@ -20,6 +20,9 @@ export default function Notes() {
   }, []);
 
   async function onLoad() {
+    if (!state.auth.isAuthenticated) {
+      return;
+    }
     try {
       const curNote = await loadNote();
       setNote(curNote);

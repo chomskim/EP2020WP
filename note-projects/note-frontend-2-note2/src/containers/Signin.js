@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import './Signin.css';
-import { useMainContext } from '../libs/contextLib';
+import "./Signin.css";
+import { useMainContext } from "../libs/contextLib";
 
 export default function Signin() {
   const { state, reducer } = useMainContext();
   const history = useHistory();
   const [values, setValues] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   function validateForm() {
@@ -18,13 +18,13 @@ export default function Signin() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('email, password=', values.email, values.password);
+    console.log("email, password=", values.email, values.password);
     const auth = {
       isAuthenticated: true,
       userId: values.email,
     };
-    console.log('signin auth=', auth);
-    reducer({ type: 'setAuth', payload: auth });
+    console.log("signin auth=", auth);
+    reducer({ type: "setAuth", payload: auth });
     history.push("/");
   }
   const handleChange = (name) => (event) => {
@@ -36,11 +36,11 @@ export default function Signin() {
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel>Email</ControlLabel>
-          <FormControl autoFocus type="email" value={values.email} onChange={handleChange('email')} />
+          <FormControl autoFocus type="email" value={values.email} onChange={handleChange("email")} />
         </FormGroup>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
-          <FormControl value={values.password} onChange={handleChange('password')} type="password" />
+          <FormControl value={values.password} onChange={handleChange("password")} type="password" />
         </FormGroup>
         <Button block bsSize="large" disabled={!validateForm()} type="submit">
           Signin

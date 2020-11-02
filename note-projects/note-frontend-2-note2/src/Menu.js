@@ -11,7 +11,7 @@ function Menu() {
   function handleSignout() {
     console.log('Click Signout');
     reducer({ type: 'clear' });
-    history.push('/signin');
+    history.push('/');
   }
 
   return (
