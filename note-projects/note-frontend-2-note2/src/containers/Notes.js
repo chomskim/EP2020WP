@@ -54,7 +54,7 @@ export default function Notes() {
       title: values.title || note.title,
       content: values.content || note.content,
       created: note.created,
-      updated: new Date(),
+      updated: Date.now(),
     };
     return delay(500).then(() => {
       console.log("updNote=", updNote);

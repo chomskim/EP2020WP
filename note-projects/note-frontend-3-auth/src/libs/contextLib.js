@@ -6,14 +6,14 @@ const INIT_NOTES_DB = [
     title: 't1',
     content: 'sample note',
     created: 1487800950620,
-    updated: new Date().getTime(),
+    updated: Date.now(),
   },
   {
     noteId: '12345',
     title: 'hello',
     content: 'second note',
-    created: new Date().getTime(),
-    updated: new Date().getTime(),
+    created: Date.now(),
+    updated: Date.now(),
   },
 ];
 const initState = {

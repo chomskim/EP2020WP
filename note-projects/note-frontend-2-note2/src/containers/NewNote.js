@@ -27,8 +27,8 @@ export default function NewNote() {
       noteId: v4(),
       title: values.title,
       content: values.content,
-      created: new Date(),
-      updated: new Date(),
+      created: Date.now(),
+      updated: Date.now(),
     };
     return delay(500).then(() => {
       console.log('newNote=', newNote);

@@ -14,7 +14,7 @@ function Menu() {
     await Auth.signOut();
 
     reducer({ type: 'clear' });
-    history.push('/signin');
+    history.push('/');
   }
 
   return (

@@ -1,0 +1,43 @@
+
+#Create a Cognito User Pool
+https://serverless-stack.com/chapters/create-a-cognito-user-pool.html
+
+Region -- ap-northeast-2
+
+Pool Id -- ap-northeast-2_3lUsAw6YQ
+Pool ARN -- arn:aws:cognito-idp:ap-northeast-2:662053100371:userpool/ap-northeast-2_3lUsAw6YQ
+
+App name -- notes-app
+App client id -- 5vnto9slg0bcmsbc49ur1rfe17
+
+Domain -- https://hufs-notes-app.auth.ap-northeast-2.amazoncognito.com
+
+Configure the AWS CLI
+https://serverless-stack.com/chapters/configure-the-aws-cli.html
+$ aws configure
+AWS Access Key ID [None]: AKIAZUJLQTNJ4*******
+AWS Secret Access Key [None]: nwA0Xxl+2ASY56Deoug94SELJT2fcnSq0*******
+Default region name [None]: ap-northeast-2
+Default output format [None]: json
+
+# Add user
+$ aws cognito-idp sign-up \
+>   --region ap-northeast-2 \
+>   --client-id 5vnto9slg0bcmsbc49ur1rfe17 \
+>   --username admin@example.com \
+>   --password Passw0rd!
+{
+    "UserConfirmed": false,
+    "CodeDeliveryDetails": {
+        "Destination": "a***@e***.com",
+        "DeliveryMedium": "EMAIL",
+        "AttributeName": "email"
+    },
+    "UserSub": "c6c0cec5-8a34-41d8-b724-dabdf537cb24"
+}
+
+$ aws cognito-idp admin-confirm-sign-up \
+  --region ap-northeast-2 \
+  --user-pool-id ap-northeast-2_3lUsAw6YQ \
+  --username admin@example.com
+

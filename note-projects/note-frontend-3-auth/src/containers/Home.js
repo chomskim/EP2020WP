@@ -37,8 +37,11 @@ export default function Home() {
       <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
         <ListGroupItem header={note.title} style={{ display: "flex" }}>
           {note.content.trim().split("\n")[0]}
-          <span style={{ position: "absolute", right: 10 }}>
+          <span style={{ position: "absolute", right: 180 }}>
             {"Created: " + new Date(note.created).toISOString().substring(0, 10)}
+          </span>
+          <span style={{ position: "absolute", right: 10 }}>
+            {"Updated: " + new Date(note.updated).toISOString().substring(0, 10)}
           </span>
         </ListGroupItem>
       </LinkContainer>
