@@ -1,8 +1,4 @@
 export default {
-  s3: {
-    REGION: 'ap-northeast-2',
-    BUCKET: 'ep2020-notes-app-upload',
-  },
   apiGateway: {
     REGION: 'ap-northeast-2',
     URL: 'https://z3yhfakpal.execute-api.ap-northeast-2.amazonaws.com/dev',
