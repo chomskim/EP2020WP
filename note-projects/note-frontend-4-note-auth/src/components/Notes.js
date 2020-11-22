@@ -5,7 +5,6 @@ import { ControlLabel, Form, FormGroup, FormControl } from "react-bootstrap";
 import { useMainContext } from "../libs/contextLib";
 import LoaderButton from "./LoaderButton";
 import { onError } from "../libs/errorLib";
-import { delay } from "../libs/utilsLib";
 
 export default function Notes() {
   const { state, reducer } = useMainContext();
@@ -38,7 +37,6 @@ export default function Notes() {
 
   function loadNote() {
     console.log("loadNote id=", id);
-    //return delay(500).then(() => state.notes.filter((note) => note.noteId === id)[0]);
     return API.get("notes", `/notes/${id}`);
   }
 
