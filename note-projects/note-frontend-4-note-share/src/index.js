@@ -22,7 +22,12 @@ Amplify.configure({
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION,
       },
-    ],
+      {
+        name: "room",
+        endpoint: config.apiGatewayRoom.URL,
+        region: config.apiGateway.REGION,
+      },
+   ],
   },
 });
 

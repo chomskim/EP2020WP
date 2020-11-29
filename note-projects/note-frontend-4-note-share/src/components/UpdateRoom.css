@@ -1,0 +1,8 @@
+.UpdateRoom Form {
+  padding-bottom: 15px;
+}
+
+.UpdateRoom Form textarea {
+  height: 300px;
+  font-size: 24px;
+}

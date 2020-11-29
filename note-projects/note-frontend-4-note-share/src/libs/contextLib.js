@@ -32,6 +32,8 @@ function mainReducer(state, action) {
       return { ...state, auth: action.payload };
     case "setNotes":
       return { ...state, notes: action.payload };
+    case "setRoomList":
+      return { ...state, rooms: action.payload };
     case "addNote":
       const addedOjects = [...state.notes, action.payload];
       return { ...state, notes: addedOjects };

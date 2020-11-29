@@ -7,14 +7,12 @@ export const main = handler(async (event, context) => {
     TableName: process.env.DYNAMODB_TABLE,
 
     Item: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: data.noteId,
       roomId: data.roomId,
-      email: data.email,
-      title: data.title,
-      content: data.content,
-      created: data.created,
-      updated: data.updated,
+      roomDesc: data.roomDesc,
+      owner: data.owner,
+      memberList: data.memberList,
+      created: Date.now(),
+      updated: Date.now(),
     }
   };
   console.log('create params =',params);

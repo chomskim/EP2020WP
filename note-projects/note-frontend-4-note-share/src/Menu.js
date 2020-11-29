@@ -1,20 +1,20 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useMainContext } from './libs/contextLib';
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { useMainContext } from "./libs/contextLib";
 
 function Menu() {
   const { state, reducer } = useMainContext();
   const history = useHistory();
 
   async function handleSignout() {
-    console.log('Click Signout');
+    console.log("Click Signout");
     await Auth.signOut();
 
-    reducer({ type: 'clear' });
-    history.push('/');
+    reducer({ type: "clear" });
+    history.push("/");
   }
 
   return (
@@ -28,7 +28,12 @@ function Menu() {
       <Navbar.Collapse>
         <Nav pullRight>
           {state.auth.isAuthenticated ? (
-            <NavItem onClick={handleSignout}>Signout</NavItem>
+            <>
+              <LinkContainer to="/room/new">
+                <NavItem>Create Room</NavItem>
+              </LinkContainer>
+              <NavItem onClick={handleSignout}>Signout</NavItem>
+            </>
           ) : (
             <>
               <LinkContainer to="/signup">

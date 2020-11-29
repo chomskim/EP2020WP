@@ -9,6 +9,8 @@ import Notes from "./components/Notes";
 import AuthenticatedRoute from "./auth/AuthenticatedRoute";
 import UnauthenticatedRoute from "./auth/UnauthenticatedRoute";
 import ResetPassword from "./auth/ResetPassword";
+import CreateRoom from "./components/CreateRoom";
+import UpdateRoom from "./components/UpdateRoom";
 
 export default function MainRouter() {
   return (
@@ -31,6 +33,12 @@ export default function MainRouter() {
         </AuthenticatedRoute>
         <AuthenticatedRoute exact path="/notes/:id">
           <Notes />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute exact path="/room/new">
+          <CreateRoom />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute exact path="/room/:id">
+          <UpdateRoom />
         </AuthenticatedRoute>
         <Route>
           <NotFound />

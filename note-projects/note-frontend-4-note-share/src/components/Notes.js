@@ -6,6 +6,8 @@ import { useMainContext } from "../libs/contextLib";
 import LoaderButton from "./LoaderButton";
 import { onError } from "../libs/errorLib";
 
+import "./Notes.css";
+
 export default function Notes() {
   const { state, reducer } = useMainContext();
   const { id } = useParams();

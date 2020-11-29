@@ -1,4 +1,4 @@
-service: ep2020-notes-api
+service: ep2020-notes-room-api
 
 # Create an optimized package for our functions
 package:
@@ -18,7 +18,7 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    DYNAMODB_TABLE: ep2020-notes-table
+    DYNAMODB_TABLE: ep2020-notes-room
 
   iamRoleStatements:
     - Effect: Allow
@@ -37,7 +37,7 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
+  # - path: url path is /room
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
@@ -46,83 +46,82 @@ functions:
     handler: create.main
     events:
       - http:
-          path: notes
+          path: room
           method: post
           cors: true
           authorizer: aws_iam
 
   get:
     # Defines an HTTP API endpoint that calls the main function in get.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /room/{id}
     # - method: GET request
     handler: get.main
     events:
       - http:
-          path: notes/{id}
+          path: room/{id}
           method: get
           cors: true
           authorizer: aws_iam
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
-    # - path: url path is /notes
+    # - path: url path is /room
     # - method: GET request
     handler: list.main
     events:
       - http:
-          path: notes
+          path: room
           method: get
           cors: true
           authorizer: aws_iam
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /room/{id}
     # - method: PUT request
     handler: update.main
     events:
       - http:
-          path: notes/{id}
+          path: room/{id}
           method: put
           cors: true
           authorizer: aws_iam
 
   delete:
     # Defines an HTTP API endpoint that calls the main function in delete.js
-    # - path: url path is /notes/{id}
+    # - path: url path is /room/{id}
     # - method: DELETE request
     handler: delete.main
     events:
       - http:
-          path: notes/{id}
+          path: room/{id}
           method: delete
           cors: true
           authorizer: aws_iam
 
-  listby:
-    # Defines an HTTP API endpoint that calls the main function in listby.js
-    # - path: url path is notes/by/{email}
+  listbyOwner:
+    # Defines an HTTP API endpoint that calls the main function in listbyOwner.js
+    # - path: url path is /room
     # - method: GET request
-    handler: listby.main
+    handler: listbyOwner.main
     events:
       - http:
-          path: notes/by/{email}
+          path: room/owner/{owner}
           method: get
           cors: true
           authorizer: aws_iam
 
-  listbyRoom:
-    # Defines an HTTP API endpoint that calls the main function in listby.js
-    # - path: url path is notes/by/{email}
+  listbyMember:
+    # Defines an HTTP API endpoint that calls the main function in listbyMember.js
+    # - path: url path is room/by/{email}
     # - method: GET request
-    handler: listby.main
+    handler: listbyMember.main
     events:
       - http:
-          path: notes/room/{room}
+          path: room/member/{member}
           method: get
           cors: true
           authorizer: aws_iam
-
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors

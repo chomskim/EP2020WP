@@ -5,6 +5,7 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useMainContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
+import RoomList from "./RoomList";
 
 import "./Home.css";
 
@@ -22,7 +23,7 @@ export default function Home() {
       return;
     }
     try {
-      console.log("email=", state.auth.userId);
+      console.log("Home email=", state.auth.userId);
       const notes = await loadNotes();
       console.log("notes=", notes);
       reducer({ type: 'setNotes', payload: notes });
@@ -73,6 +74,8 @@ export default function Home() {
   function renderNotes() {
     return (
       <div className="notes">
+        <PageHeader>Your Rooms</PageHeader>
+        <RoomList />
         <PageHeader>Your Notes</PageHeader>
         <ListGroup>
           <LinkContainer key="new" to="/notes/new">
