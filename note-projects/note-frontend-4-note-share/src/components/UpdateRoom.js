@@ -81,7 +81,7 @@ export default function UpdateRoom() {
     }
 
     const updRoom = {
-      roomId: room.roomId,
+      ...room,
       roomDesc: values.description || room.roomDesc,
       memberList: newMem ? [...room.memberList, newMem] : room.memberList,
     };

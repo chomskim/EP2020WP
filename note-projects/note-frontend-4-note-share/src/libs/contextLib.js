@@ -19,11 +19,12 @@ const INIT_NOTES_DB = [
   },
 ];
 const initState = {
-  notes: [],
   auth: {
     isAuthenticated: false,
     userId: undefined,
   },
+  notes: [],
+  rooms: [],
 };
 
 function mainReducer(state, action) {
@@ -34,6 +35,9 @@ function mainReducer(state, action) {
       return { ...state, notes: action.payload };
     case "setRoomList":
       return { ...state, rooms: action.payload };
+    case "addRoom":
+      const addedRooms = [...state.rooms, action.payload];
+      return { ...state, rooms: addedRooms };  
     case "addNote":
       const addedOjects = [...state.notes, action.payload];
       return { ...state, notes: addedOjects };
