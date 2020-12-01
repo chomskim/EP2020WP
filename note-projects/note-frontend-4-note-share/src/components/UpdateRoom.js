@@ -36,6 +36,9 @@ export default function UpdateRoom() {
   async function onLoad() {
     try {
       const curRoom = await loadRoom();
+      if (!Array.isArray(curRoom.memberList)) {
+        curRoom.memberList = JSON.parse(curRoom.memberList);
+      }
       console.log("curRoom=", curRoom);
       setRoom(curRoom);
       setValues({

@@ -10,7 +10,7 @@ export const main = handler(async (event, context) => {
       roomId: data.roomId,
       roomDesc: data.roomDesc,
       owner: data.owner,
-      memberList: data.memberList,
+      memberList: JSON.stringify(data.memberList),
       created: Date.now(),
       updated: Date.now(),
     }

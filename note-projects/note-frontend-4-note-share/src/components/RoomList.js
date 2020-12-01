@@ -27,9 +27,17 @@ export default function RoomList() {
     }
     try {
       console.log("RoomList email=", state.auth.userId);
-      const rooms = await loadroomList();
+      let rooms = await loadroomList();
+      console.log("rooms=", rooms);
+      rooms = rooms.map((rm)=>{
+        if (!Array.isArray(rm.memberList)) {
+          return {...rm, memberList: JSON.parse(rm.memberList)}
+        }
+        else return rm;
+      })
+
+      console.log("rooms=", rooms);
       rooms.unshift(NO_ROOM);
-      console.log("roomList=", rooms);
       reducer({ type: "setRoomList", payload: rooms });
       setRoomList(rooms);
     } catch (e) {

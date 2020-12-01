@@ -4,9 +4,10 @@ import dynamoDb from "./libs/dynamodb-lib";
 export const main = handler(async (event, context) => {
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
-    FilterExpression: "#member = :member",
+    //FilterExpression: "#member = :member",
+    FilterExpression: "contains(#memberList, :member)",
     ExpressionAttributeNames: {
-      "#member": "member",
+      "#memberList": "memberList",
     },
     ExpressionAttributeValues: {
       ":member": event.pathParameters.member
