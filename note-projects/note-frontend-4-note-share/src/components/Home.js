@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useMainContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import RoomList from "./RoomList";
+import { CONSTANTS } from "../libs/constants";
 
 import "./Home.css";
 
@@ -18,6 +19,10 @@ export default function Home() {
     onLoad();
   }, []);
 
+  useEffect(() => {
+    onLoad();
+  }, [state.curRoom]);
+
   async function onLoad() {
     if (!state.auth.isAuthenticated) {
       return;
@@ -26,23 +31,29 @@ export default function Home() {
       console.log("Home email=", state.auth.userId);
       const notes = await loadNotes();
       console.log("notes=", notes);
-      reducer({ type: 'setNotes', payload: notes });
+      reducer({ type: "setNotes", payload: notes });
       setNotes(notes);
     } catch (e) {
+      console.log("Home onLoad Error e=", e);
       onError(e);
     }
     setIsLoading(false);
   }
 
   function loadNotes() {
-    return API.get("notes", `/notes/by/${state.auth.userId}`);
+    const endpoint =
+      state.curRoom.roomId === CONSTANTS.NO_ROOM.roomId
+        ? `/notes/by/${state.auth.userId}`
+        : `/notes/room/${state.curRoom.roomId}`;
+    console.log("loadNotes endpoint=", endpoint);
+    return API.get("notes", endpoint);
   }
 
   function renderNotesList(notes) {
     return notes.map((note, i) => (
       <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
         <ListGroupItem header={note.title} style={{ display: "flex" }}>
-          {note.content ? note.content.trim().split("\n")[0]: ""}
+          {note.content ? note.content.trim().split("\n")[0] : ""}
           <span style={{ position: "absolute", right: 180 }}>
             {"Created: " + new Date(note.created).toISOString().substring(0, 10)}
           </span>

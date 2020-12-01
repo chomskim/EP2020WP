@@ -8,6 +8,7 @@ import "./NewNote.css";
 import { useMainContext } from "../libs/contextLib";
 import LoaderButton from "./LoaderButton";
 import { onError } from "../libs/errorLib";
+import { CONSTANTS } from "../libs/constants";
 
 export default function NewNote() {
   const { state, reducer } = useMainContext();
@@ -38,7 +39,10 @@ export default function NewNote() {
       created: Date.now(),
       updated: Date.now(),
     };
-
+    if (state.curRoom.roomId !== CONSTANTS.NO_ROOM) {
+      newNote.roomId = state.curRoom.roomId;
+    }
+    
     try {
       const res = await createNote(newNote);
       reducer({ type: 'addNote', payload: newNote });

@@ -13,8 +13,8 @@ export const main = handler(async (event, context) => {
     // 'ExpressionAttributeValues' defines the value in the update expression
     UpdateExpression: "SET roomDesc = :roomDesc, memberList = :memberList, updated = :updated",
     ExpressionAttributeValues: {
-      ":roomDesc": data.roomDesc || null,
-      ":memberList": data.memberList || null,
+      ":roomDesc": data.roomDesc,
+      ":memberList": JSON.stringify(data.memberList),
       ":updated": Date.now(),
     },
     // 'ReturnValues' specifies if and how to return the item's attributes,

@@ -115,7 +115,7 @@ functions:
     # Defines an HTTP API endpoint that calls the main function in listby.js
     # - path: url path is notes/by/{email}
     # - method: GET request
-    handler: listby.main
+    handler: listbyRoom.main
     events:
       - http:
           path: notes/room/{room}

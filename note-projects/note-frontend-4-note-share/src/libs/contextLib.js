@@ -1,4 +1,5 @@
 import { useContext, createContext, useReducer } from "react";
+import { CONSTANTS } from "../libs/constants";
 
 const INIT_NOTES_DB = [
   {
@@ -25,6 +26,7 @@ const initState = {
   },
   notes: [],
   rooms: [],
+  curRoom: CONSTANTS.NO_ROOM,
 };
 
 function mainReducer(state, action) {
@@ -37,7 +39,9 @@ function mainReducer(state, action) {
       return { ...state, rooms: action.payload };
     case "addRoom":
       const addedRooms = [...state.rooms, action.payload];
-      return { ...state, rooms: addedRooms };  
+      return { ...state, rooms: addedRooms }; 
+    case "setCurRoom":
+      return { ...state, curRoom: action.payload };
     case "addNote":
       const addedOjects = [...state.notes, action.payload];
       return { ...state, notes: addedOjects };
