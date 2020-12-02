@@ -5,6 +5,7 @@ import { ControlLabel, Form, FormGroup, FormControl } from "react-bootstrap";
 import { useMainContext } from "../libs/contextLib";
 import LoaderButton from "./LoaderButton";
 import { onError } from "../libs/errorLib";
+import { CONSTANTS } from "../libs/constants";
 
 import "./Notes.css";
 
@@ -39,11 +40,17 @@ export default function Notes() {
 
   function loadNote() {
     console.log("loadNote id=", id);
-    return API.get("notes", `/notes/${id}`);
+    if (state.curRoom.owner === state.auth.userId) {
+      return API.get("notes", `/notes/${id}`);
+    } else {
+      const selNotes = state.notes.filter((note) => note.noteId === id);
+      console.log("loadNote selNotes=", selNotes);
+      return selNotes[0];
+    }
   }
 
   function validateForm() {
-    return values.title.length > 0 || values.content.length > 0;
+    return note.email === state.auth.userId && (values.title.length > 0 || values.content.length > 0);
   }
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -122,7 +129,13 @@ export default function Notes() {
         >
           Save
         </LoaderButton>
-        <LoaderButton block bsSize="large" bsStyle="danger" onClick={handleDelete}>
+        <LoaderButton
+          block
+          bsSize="large"
+          bsStyle="danger"
+          onClick={handleDelete}
+          disabled={note.email !== state.auth.userId}
+        >
           Delete
         </LoaderButton>
       </Form>
