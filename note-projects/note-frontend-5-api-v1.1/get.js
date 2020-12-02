@@ -12,7 +12,7 @@ export const main = handler(async (event, context) => {
       noteId: event.pathParameters.id
     }
   };
-
+  console.log("params=",params);
   const result = await dynamoDb.get(params);
   if ( ! result.Item) {
     throw new Error("Item not found.");

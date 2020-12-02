@@ -40,6 +40,7 @@ export default function Notes() {
 
   function loadNote() {
     console.log("loadNote id=", id);
+    /*
     if (state.curRoom.owner === state.auth.userId) {
       return API.get("notes", `/notes/${id}`);
     } else {
@@ -47,10 +48,14 @@ export default function Notes() {
       console.log("loadNote selNotes=", selNotes);
       return selNotes[0];
     }
+    */
+   const selNotes = state.notes.filter((note) => note.noteId === id);
+   console.log("loadNote selNotes=", selNotes);
+   return selNotes[0];
   }
 
   function validateForm() {
-    return note.email === state.auth.userId && (values.title.length > 0 || values.content.length > 0);
+    return (note && note.email === state.auth.userId) && (values.title.length > 0 || values.content.length > 0);
   }
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -134,7 +139,7 @@ export default function Notes() {
           bsSize="large"
           bsStyle="danger"
           onClick={handleDelete}
-          disabled={note.email !== state.auth.userId}
+          disabled={note && note.email !== state.auth.userId}
         >
           Delete
         </LoaderButton>
