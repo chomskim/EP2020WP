@@ -33,15 +33,15 @@ function mainReducer(state, action) {
   switch (action.type) {
     case "setAuth":
       return { ...state, auth: action.payload };
-    case "setNotes":
-      return { ...state, notes: action.payload };
     case "setRoomList":
       return { ...state, rooms: action.payload };
     case "addRoom":
       const addedRooms = [...state.rooms, action.payload];
-      return { ...state, rooms: addedRooms }; 
+      return { ...state, rooms: addedRooms };
     case "setCurRoom":
       return { ...state, curRoom: action.payload };
+    case "setNotes":
+      return { ...state, notes: action.payload };
     case "addNote":
       const addedOjects = [...state.notes, action.payload];
       return { ...state, notes: addedOjects };

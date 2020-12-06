@@ -5,7 +5,7 @@ import { ControlLabel, Form, FormGroup, FormControl } from "react-bootstrap";
 import { useMainContext } from "../libs/contextLib";
 import LoaderButton from "./LoaderButton";
 import { onError } from "../libs/errorLib";
-import { CONSTANTS } from "../libs/constants";
+//import { CONSTANTS } from "../libs/constants";
 
 import "./Notes.css";
 
@@ -72,6 +72,14 @@ export default function Notes() {
       updated: Date.now(),
     };
     console.log("note=", updNote);
+    const updatedNoteIndex = state.notes.findIndex((proj) => proj.noteId === updNote.noteId);
+    const updatedNotes = [
+      ...state.notes.slice(0, updatedNoteIndex),
+      updNote,
+      ...state.notes.slice(updatedNoteIndex + 1),
+    ];
+    reducer({ type: 'setNotes', payload: updatedNotes });
+
     return API.put("notes", `/notes/${id}`, {
       body: updNote,
     });
@@ -92,6 +100,9 @@ export default function Notes() {
   }
 
   function deleteNote() {
+    const filteredNotes = state.notes.filter((note) => note.noteId !== id);
+    reducer({ type: 'setNotes', payload: filteredNotes });
+
     console.log("deleteNote id=", id);
     return API.del("notes", `/notes/${id}`);
   }

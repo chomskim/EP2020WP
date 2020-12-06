@@ -45,7 +45,8 @@ export default function NewNote() {
     
     try {
       const res = await createNote(newNote);
-      reducer({ type: 'addNote', payload: newNote });
+      const addedOjects = [...state.notes, newNote];
+      reducer({ type: 'setNotes', payload: addedOjects });
       console.log("handleSubmit res=", res);
       history.push("/");
     } catch (e) {
