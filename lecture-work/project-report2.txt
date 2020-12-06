@@ -1,0 +1,14 @@
+최종 과제
+Due Date 2020-12-22(화)
+배점 -- 35
+Note Taking App(Share Version) 개선
+ 
+1. Your Rooms 라인에 선택한 Room 이름(roomId)를 보여 줌(5점)
+2. Note Create, Update, Delete 후에도 선택한 Room 유지(5점)
+3. RoomList 라인에 해당 Room의 Owner(email) 표시(5점)
+4. 초청된 Room에서 탈퇴 기능(20점)
+   1) Owner가 이닌 Room 에는 Trash(Delete) Button 추가
+   2) 그 버튼을 클릭하면 Room Field에 dropList에 member로 추가
+   3) dropList에 있는 merber는 memberList에서 삭제
+      이후에 추가도 못하게 함
+      

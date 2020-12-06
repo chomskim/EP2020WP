@@ -1,0 +1,20 @@
+0. 서비스과제(10점)
+http://ep2020.notes.com.s3-website.ap-northeast-2.amazonaws.com
+에 들어가 Signup하여 자신의 계정을 만들고
+title -- 학번
+내용 -- 학과, 이름, 이메일
+인 note를 하나 만들어 저장할 것
+
+1. 과제
+1) 주어진 note-frontend-4-note-auth 프로젝트를 build해서
+자신의 AWS S3에 웹호스팅 하고, 그 URL을 제시할 것(10점)
+2) 변형 -- contextLub.js의  mainReducer 함수에서 addNote,delNote, updNote를
+없애고, setNotes만을 이용하는 프로그램으로 수정(5점)
+3) AWS에 자신의 Cognito를 만들어 사용(5점)
+4) AWS에 자신의 DynamoDB를 만들어 사용
+
+ 
+
+과제 결과물
+1) AWS S3에 웹호스팅 URL
+2) src zip file
