@@ -31,7 +31,7 @@ export default function UsingStatetoRenderListItems() {
         >
           <ListItemText
             primary={item.name}
-            secondary={item.timestamp.toLocaleString()}
+            secondary={item.timestamp.toISOString()}
             primaryTypographyProps={{
               color: item.selected ? 'primary' : undefined
             }}

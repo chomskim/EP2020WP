@@ -24,7 +24,7 @@ const PresentingMedia = withStyles(styles)(({ classes }) => (
     <CardHeader title="Grapefruit" subheader="Red" />
     <CardMedia
       className={classes.media}
-      image="https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg"
+      image="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
       title="Grapefruit"
     />
     <CardContent>
