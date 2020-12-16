@@ -50,9 +50,9 @@ function mainReducer(state, action) {
       return { ...state, notes: filteredNotes };
     case "updNote":
       const updatedNote = { ...action.payload };
-      console.log("updatedNote=", updatedNote);
+      //console.log("updatedNote=", updatedNote);
       const updatedNoteIndex = state.notes.findIndex((proj) => proj.noteId === updatedNote.noteId);
-      console.log("updatedNoteIndex=", updatedNoteIndex);
+      //console.log("updatedNoteIndex=", updatedNoteIndex);
       const updatedNotes = [
         ...state.notes.slice(0, updatedNoteIndex),
         updatedNote,

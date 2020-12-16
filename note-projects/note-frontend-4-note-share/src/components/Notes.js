@@ -21,7 +21,7 @@ export default function Notes() {
     content: "",
   });
   useEffect(() => {
-    console.log("useEffect id=", id);
+    //console.log("useEffect id=", id);
     onLoad();
   }, []);
 
@@ -39,7 +39,7 @@ export default function Notes() {
   }
 
   function loadNote() {
-    console.log("loadNote id=", id);
+    //console.log("loadNote id=", id);
     /*
     if (state.curRoom.owner === state.auth.userId) {
       return API.get("notes", `/notes/${id}`);
@@ -50,7 +50,7 @@ export default function Notes() {
     }
     */
    const selNotes = state.notes.filter((note) => note.noteId === id);
-   console.log("loadNote selNotes=", selNotes);
+   //console.log("loadNote selNotes=", selNotes);
    return selNotes[0];
   }
 
@@ -71,7 +71,7 @@ export default function Notes() {
       created: note.created,
       updated: Date.now(),
     };
-    console.log("note=", updNote);
+    //console.log("note=", updNote);
     const updatedNoteIndex = state.notes.findIndex((proj) => proj.noteId === updNote.noteId);
     const updatedNotes = [
       ...state.notes.slice(0, updatedNoteIndex),
@@ -86,12 +86,12 @@ export default function Notes() {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("values=", values);
+    //console.log("values=", values);
     setIsLoading(true);
 
     try {
       const updNote = await updateNote(note);
-      console.log("handleSubmit updNote=", updNote);
+      //console.log("handleSubmit updNote=", updNote);
       history.push("/");
     } catch (e) {
       onError(e);
@@ -103,7 +103,7 @@ export default function Notes() {
     const filteredNotes = state.notes.filter((note) => note.noteId !== id);
     reducer({ type: 'setNotes', payload: filteredNotes });
 
-    console.log("deleteNote id=", id);
+    //console.log("deleteNote id=", id);
     return API.del("notes", `/notes/${id}`);
   }
   async function handleDelete(event) {

@@ -26,14 +26,14 @@ export default function Signin() {
     setIsLoading(true);
 
     try {
-      console.log("handleSubmit values=", values);
+      //console.log("handleSubmit values=", values);
       const res = await Auth.signIn(values.email, values.password);
-      console.log("signIn res =", res);
+      //console.log("signIn res =", res);
       const auth = {
         isAuthenticated: true,
         userId: values.email,
       };
-      console.log("signin auth=", auth);
+      //console.log("signin auth=", auth);
       reducer({ type: "setAuth", payload: auth });
       history.push("/");
     } catch (e) {

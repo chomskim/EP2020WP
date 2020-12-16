@@ -28,7 +28,7 @@ export default function NewNote() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("values=", values);
+    //console.log("values=", values);
 
     setIsLoading(true);
     const newNote = {
@@ -47,7 +47,7 @@ export default function NewNote() {
       const res = await createNote(newNote);
       const addedOjects = [...state.notes, newNote];
       reducer({ type: 'setNotes', payload: addedOjects });
-      console.log("handleSubmit res=", res);
+      //console.log("handleSubmit res=", res);
       history.push("/");
     } catch (e) {
       onError(e);

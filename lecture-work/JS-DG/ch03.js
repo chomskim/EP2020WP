@@ -88,40 +88,58 @@ console.log(x, y);
 console.log(x, y);
 
 let obj2 = { x: 1, y: 2 }; // The object we'll loop over
-for (const [name, value] of Object.entries(obj2)) {
-  console.log(name, value); // Prints "x 1" and "y 2"
-}
 console.log(JSON.stringify(Object.entries(obj2)));
 
-[x, ...y] = [1,2,3,4]
+let obj3 = {};
+for (const [name, value] of Object.entries(obj2)) {
+  console.log(name, value); // Prints "x 1" and "y 2"
+  obj3[name] = value;
+}
+console.log("obj3=", obj3);
+let obj4 = Object.entries(obj2).reduce((acc, cur) => {
+  acc[cur[0]] = cur[1];
+  return acc;
+}, {});
+console.log(obj4);
+
+[x, ...y] = [1, 2, 3, 4];
 console.log(x);
 console.log(y);
-console.log(...[2,3,4]);
-let sp1 = [...[2,3,4]];
+console.log(...[2, 3, 4]);
+let sp1 = [...[2, 3, 4]];
 console.log(sp1);
-sp1 = { ...{x:1, y:2}}
+sp1 = { ...{ x: 1, y: 2 } };
 console.log(sp1);
 
 let [first, ...rest] = "Hello";
-console.log(first,rest);
+console.log(first, rest);
 
-let transparent = {r: 0.1, g: 0.2, b: 0.3, a: 1.0}; // A RGBA color
-let {r:r, g:g, b:b1} = transparent; // r == 0.0; g == 0.0; b == 0.0
+let transparent = { r: 0.1, g: 0.2, b: 0.3, a: 1.0 }; // A RGBA color
+let {r,g,b} = transparent; 
+let selObj = {r,g,b};
+console.log("selObj=",selObj);
+selObj = (({ r,g,b }) => ({ r,g,b }))(transparent);
+console.log("selObj=",selObj);
+let { r: r, g: g, b: b1 } = transparent; // r == 0.0; g == 0.0; b == 0.0
 console.log(r, g, b1);
 
-x=1;
-y=2;
-console.log(x,y);
-obj = {x,y};
+
+
+x = 1;
+y = 2;
+console.log(x, y);
+obj = { x, y };
 console.log(obj);
-obj = {x:x, y:y};
+obj = { x: x, y: y };
 console.log(obj);
 
-const {sin, cos, tan} = Math;
+const { sin, cos, tan } = Math;
 console.log(Math.sin(0.1));
 console.log(sin(0.1));
 
-let points = [{x: 1, y: 2}, {x: 3, y: 4}]; // An array of two point objects
-let [{x: x1, y: y1}, {x: x2, y: y2}] = points;
-console.log(x1,y1,x2,y2);
-
+let points = [
+  { x: 1, y: 2 },
+  { x: 3, y: 4 },
+]; // An array of two point objects
+let [{ x: x1, y: y1 }, { x: x2, y: y2 }] = points;
+console.log(x1, y1, x2, y2);

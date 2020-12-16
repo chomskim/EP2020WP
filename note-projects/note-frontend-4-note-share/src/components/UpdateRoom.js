@@ -29,7 +29,7 @@ export default function UpdateRoom() {
     newMember: "",
   });
   useEffect(() => {
-    console.log("UpdateRoom useEffect id=", id);
+    //console.log("UpdateRoom useEffect id=", id);
     onLoad();
   }, []);
 
@@ -39,7 +39,7 @@ export default function UpdateRoom() {
       if (!Array.isArray(curRoom.memberList)) {
         curRoom.memberList = JSON.parse(curRoom.memberList);
       }
-      console.log("curRoom=", curRoom);
+      //console.log("curRoom=", curRoom);
       setRoom(curRoom);
       setValues({
         name: curRoom.roomId,
@@ -51,7 +51,7 @@ export default function UpdateRoom() {
   }
 
   function loadRoom() {
-    console.log("loadRoom id=", id);
+    //console.log("loadRoom id=", id);
     return API.get("room", `/room/${id}`);
   }
 
@@ -63,7 +63,7 @@ export default function UpdateRoom() {
   };
 
   function updateRoom(updRoom) {
-    console.log("updRoom=", updRoom);
+    //console.log("updRoom=", updRoom);
     return API.put("room", `/room/${id}`, {
       body: updRoom,
     });
@@ -71,7 +71,7 @@ export default function UpdateRoom() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("values=", values);
+    //console.log("values=", values);
     setIsLoading(true);
 
     let newMem;
@@ -90,7 +90,7 @@ export default function UpdateRoom() {
     };
     try {
       const resUpdRoom = await updateRoom(updRoom);
-      console.log("handleSubmit resUpdRoom=", resUpdRoom);
+      //console.log("handleSubmit resUpdRoom=", resUpdRoom);
       setRoom(updRoom);
       //history.push(`/room/${id}`);
     } catch (e) {
@@ -100,7 +100,7 @@ export default function UpdateRoom() {
   }
 
   function deleteRoom() {
-    console.log("deleteRoom id=", id);
+    //console.log("deleteRoom id=", id);
     return API.del("room", `/room/${id}`);
   }
   async function handleDelete(event) {
@@ -128,13 +128,13 @@ export default function UpdateRoom() {
       alert("You can't delete Owner!");
       return;
     }
-    console.log("deleteMember mem=", mem);
+    //console.log("deleteMember mem=", mem);
     const newMembers = [...room.memberList];
     const ind = newMembers.indexOf(mem);
     newMembers.splice(ind, 1);
     const newRoom = { ...room, memberList: newMembers };
     setRoom(newRoom);
-    console.log("deleteMember newRoom=", newRoom);
+    //console.log("deleteMember newRoom=", newRoom);
   };
 
   return (

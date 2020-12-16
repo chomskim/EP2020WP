@@ -23,16 +23,16 @@ export default function RoomList() {
       return;
     }
     try {
-      console.log("RoomList email=", state.auth.userId);
+      //console.log("RoomList email=", state.auth.userId);
       let rooms = await loadroomList();
-      console.log("rooms=", rooms);
+      //console.log("rooms=", rooms);
       rooms = rooms.map((rm) => {
         if (!Array.isArray(rm.memberList)) {
           return { ...rm, memberList: JSON.parse(rm.memberList) };
         } else return rm;
       });
 
-      console.log("rooms=", rooms);
+      //console.log("rooms=", rooms);
       rooms.unshift(CONSTANTS.NO_ROOM);
       reducer({ type: "setRoomList", payload: rooms });
       reducer({ type: "setCurRoom", payload: CONSTANTS.NO_ROOM });
@@ -49,7 +49,7 @@ export default function RoomList() {
   }
 
   const handleRoomSelect = (rm) => (event) => {
-    console.log("handleRoomSelect rm =", rm);
+    //console.log("handleRoomSelect rm =", rm);
     reducer({ type: "setCurRoom", payload: rm });
   }
 

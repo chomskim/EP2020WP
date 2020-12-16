@@ -28,13 +28,13 @@ export default function Home() {
       return;
     }
     try {
-      console.log("Home email=", state.auth.userId);
+      //console.log("Home email=", state.auth.userId);
       const notes = await loadNotes();
-      console.log("notes=", notes);
+      //console.log("notes=", notes);
       reducer({ type: "setNotes", payload: notes });
       setNotes(notes);
     } catch (e) {
-      console.log("Home onLoad Error e=", e);
+      //console.log("Home onLoad Error e=", e);
       onError(e);
     }
     setIsLoading(false);
@@ -45,7 +45,7 @@ export default function Home() {
       state.curRoom.roomId === CONSTANTS.NO_ROOM.roomId
         ? `/notes/by/${state.auth.userId}`
         : `/notes/room/${state.curRoom.roomId}`;
-    console.log("loadNotes endpoint=", endpoint);
+    //console.log("loadNotes endpoint=", endpoint);
     return API.get("notes", endpoint);
   }
 

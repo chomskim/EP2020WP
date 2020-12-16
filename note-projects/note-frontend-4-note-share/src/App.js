@@ -14,9 +14,9 @@ function App() {
 
   async function onLoad() {
     try {
-      console.log("App onLoad ");
+      //console.log("App onLoad ");
       const res = await Auth.currentSession();
-      console.log('currentSession res =',res);
+      //console.log('currentSession res =',res);
       if (res) {
         const email = res.idToken.payload.email;
         const auth = {
@@ -26,7 +26,7 @@ function App() {
         reducer({ type: "setAuth", payload: auth });  
       }
     } catch (e) {
-      console.log('currentSession error =',e);
+      //console.log('currentSession error =',e);
       if (e !== "No current user") {
         alert(e);
       }

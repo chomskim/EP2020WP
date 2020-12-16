@@ -37,7 +37,7 @@ export default function Signup() {
         username: values.email,
         password: values.password,
       });
-      console.log("NewUser=", nuser);
+      //console.log("NewUser=", nuser);
       setIsLoading(false);
       setNewUser(nuser);
     } catch (e) {
@@ -54,12 +54,12 @@ export default function Signup() {
     try {
       await Auth.confirmSignUp(values.email, values.confirmationCode);
       await Auth.signIn(values.email, values.password);
-      console.log("email, password=", values.email, values.password);
+      //console.log("email, password=", values.email, values.password);
       const auth = {
         isAuthenticated: true,
         userId: values.email,
       };
-      console.log("signin auth=", auth);
+      //console.log("signin auth=", auth);
       reducer({ type: "setAuth", payload: auth });
       history.push("/");
     } catch (e) {

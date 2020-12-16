@@ -10,7 +10,7 @@ function Menu() {
   const history = useHistory();
 
   async function handleSignout() {
-    console.log("Click Signout");
+    //console.log("Click Signout");
     await Auth.signOut();
 
     reducer({ type: "clear" });

@@ -26,7 +26,7 @@ export default function CreateRoom() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log("values=", values);
+    //console.log("values=", values);
 
     setIsLoading(true);
     const newRoom = {
@@ -35,11 +35,11 @@ export default function CreateRoom() {
       roomDesc: values.description,
       memberList: [state.auth.userId],
     };
-    console.log("newRoom=", newRoom);
+    //console.log("newRoom=", newRoom);
     try {
       const res = await createRoom(newRoom);
       reducer({ type: "addRoom", payload: newRoom });
-      console.log("handleSubmit res=", res);
+      //console.log("handleSubmit res=", res);
       history.push("/");
     } catch (e) {
       onError(e);
