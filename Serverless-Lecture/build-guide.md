@@ -27,13 +27,13 @@ Next: Permissions
 Group Admin  
 Next...  
 Create user  
-Access key ID -- AKIAZUJLQTNJTBCQXKO5  
-Secret access key -- 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  
+Access key ID -- AKIA***********KO5  
+Secret access key -- **************************TLL/zD  
   
 Create Access key  
 Download csv file -- brain_accessKeys.csv  
-AKIAZUJLQTNJT7FP5VN2  
-8QHnsohRTNwUQRa7SENnDF02BPu7w0xFlIqOGJN2  
+AKIA***********KO5  
+**************************TLL/zD  
 
 # Serverless Framework
 
